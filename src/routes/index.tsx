@@ -36,7 +36,7 @@ const highlights = [
   ["05", "Capture", "Create one more memory together."],
 ];
 
-const eventDetails = [
+const eventDetails: Array<[string, string, string]> = [
   ["calendar", "Date", "Add Date Here"],
   ["clock", "Time", "Add Time Here"],
   ["pin", "Venue", "School Auditorium"],
@@ -128,11 +128,11 @@ function AlumniInvitation() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const nextErrors: Record<string, string> = {};
-    if (!String(data.get("name") || "").trim()) nextErrors.name = "Please enter your full name.";
+    if (!String(data.get("name") || "").trim()) nextErrors["name"] = "Please enter your full name.";
     const email = String(data.get("email") || "").trim();
-    if (!/^\S+@\S+\.\S+$/.test(email)) nextErrors.email = "Please enter a valid email address.";
-    if (!String(data.get("phone") || "").trim()) nextErrors.phone = "Please enter your phone number.";
-    if (!data.get("attendance")) nextErrors.attendance = "Please select an attendance option.";
+    if (!/^\S+@\S+\.\S+$/.test(email)) nextErrors["email"] = "Please enter a valid email address.";
+    if (!String(data.get("phone") || "").trim()) nextErrors["phone"] = "Please enter your phone number.";
+    if (!data.get("attendance")) nextErrors["attendance"] = "Please select an attendance option.";
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length === 0) setSubmitted(true);
   };
@@ -255,15 +255,15 @@ function AlumniInvitation() {
                 <h2 id="rsvp-title">Come make<br/><em>another memory.</em></h2>
                 <p className="dialog-intro">A familiar room. Familiar faces. One unforgettable evening.</p>
                 <form onSubmit={submitForm} noValidate>
-                  <label>Full Name<input name="name" autoComplete="name" aria-invalid={Boolean(errors.name)}/>{errors.name && <small>{errors.name}</small>}</label>
+                  <label>Full Name<input name="name" autoComplete="name" aria-invalid={Boolean(errors["name"])}/>{errors["name"] && <small>{errors["name"]}</small>}</label>
                   <div className="field-row">
-                    <label>Email<input name="email" type="email" autoComplete="email" aria-invalid={Boolean(errors.email)}/>{errors.email && <small>{errors.email}</small>}</label>
-                    <label>Phone Number<input name="phone" type="tel" autoComplete="tel" aria-invalid={Boolean(errors.phone)}/>{errors.phone && <small>{errors.phone}</small>}</label>
+                    <label>Email<input name="email" type="email" autoComplete="email" aria-invalid={Boolean(errors["email"])}/>{errors["email"] && <small>{errors["email"]}</small>}</label>
+                    <label>Phone Number<input name="phone" type="tel" autoComplete="tel" aria-invalid={Boolean(errors["phone"])}/>{errors["phone"] && <small>{errors["phone"]}</small>}</label>
                   </div>
                   <fieldset><legend>Attendance</legend><div className="attendance-options">
                     <label><input type="radio" name="attendance" value="yes"/><span>Yes, I’ll be there</span></label>
                     <label><input type="radio" name="attendance" value="no"/><span>Sorry, can’t make it</span></label>
-                  </div>{errors.attendance && <small>{errors.attendance}</small>}</fieldset>
+                  </div>{errors["attendance"] && <small>{errors["attendance"]}</small>}</fieldset>
                   <button className="confirm-button" type="submit">Confirm attendance <span>→</span></button>
                 </form>
               </>
