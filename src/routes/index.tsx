@@ -232,18 +232,6 @@ function AlumniInvitation() {
         </div>
       </div>
 
-      <section className="study reveal" aria-labelledby="study-title">
-        <p className="eyebrow navy">Behind the invitation</p>
-        <h2 id="study-title">How this experience works</h2>
-        <div className="study-grid">
-          <details><summary><span>01</span>HTML structure</summary><p>Semantic elements such as <code>main</code>, <code>section</code>, <code>article</code>, <code>header</code>, <code>footer</code>, and <code>form</code> describe each part by purpose. Headings create a logical reading order, while labels connect form text to inputs.</p></details>
-          <details><summary><span>02</span>Two-page layout</summary><p>CSS Grid gives the invitation two equal columns on large screens. A media query switches that grid to one column on smaller screens, preserving the same pages and content rather than inventing a separate mobile design.</p></details>
-          <details><summary><span>03</span>Visual styling</summary><p>CSS custom properties hold the navy, ivory, gold, shadows, and typefaces. Pseudo-elements add paper grain, border details, and the center-fold shadow. Perspective and <code>rotateX</code>/<code>rotateY</code> create restrained physical depth.</p></details>
-          <details><summary><span>04</span>Animation system</summary><p>Keyframes sequence the emblem and opening text, then reveal the card. An Intersection Observer adds a class when content enters view. Pointer position updates CSS variables for card tilt and light movement. Reduced-motion preferences disable nonessential movement.</p></details>
-          <details><summary><span>05</span>RSVP behavior</summary><p>The RSVP button opens an accessible dialog, moves focus into it, traps keyboard focus, and closes with Escape. JavaScript validates all fields before replacing the form with a confirmation state. This demonstration does not transmit or store entries.</p></details>
-          <details><summary><span>06</span>JavaScript concepts</summary><p>State controls the opening, dialog, errors, and success view. Event handlers respond to pointer movement, clicks, keyboard input, and form submission. Arrays are mapped into repeated event details and highlight cards to keep the source consistent.</p></details>
-        </div>
-      </section>
 
       {modalOpen && (
         <div className="modal-layer" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setModalOpen(false)}>
