@@ -69,9 +69,32 @@ function AlumniInvitation() {
       { threshold: 0.16 },
     );
     document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+    // Scale the whole card so the complete invitation fits one screen — no page scroll.
+    const fitCard = () => {
+      const stage = stageRef.current;
+      const card = stage?.querySelector<HTMLElement>(".invitation-card");
+      if (!stage || !card) return;
+      if (window.matchMedia("(max-width: 760px)").matches) {
+        stage.style.setProperty("--fit-scale", "1");
+        stage.style.height = "";
+        return;
+      }
+      const scale = Math.min(
+        1,
+        (window.innerHeight - 96) / card.scrollHeight,
+        (window.innerWidth * 0.92) / card.scrollWidth,
+      );
+      stage.style.setProperty("--fit-scale", String(scale));
+      stage.style.height = `${card.scrollHeight * scale}px`;
+    };
+    fitCard();
+    document.fonts?.ready.then(fitCard);
+    window.addEventListener("resize", fitCard);
     return () => {
       window.clearTimeout(timer);
       observer.disconnect();
+      window.removeEventListener("resize", fitCard);
     };
   }, []);
 
