@@ -37,11 +37,12 @@ const highlights = [
 ];
 
 const eventDetails: Array<[string, string, string]> = [
-  ["calendar", "Date", "Add Date Here"],
-  ["clock", "Time", "Add Time Here"],
+  ["calendar", "Date", "September 26, Saturday"],
+  ["clock", "Time", "5:00 PM"],
   ["pin", "Venue", "School Auditorium"],
   ["people", "Batch", "2023 – 2024"],
 ];
+
 
 function LineIcon({ name }: { name: string }) {
   const paths: Record<string, React.ReactNode> = {
